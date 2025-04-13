@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista krajów</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+</head>
+<body style="background-color: lightgray; height: 100vh; width: 100%; margin: 0">
+<div style="height: 50px; background: gray; color: white; padding: 5px; margin-bottom: 20px; display: flex; justify-content: space-between; justify-items: center">
+    <h3>Planer podróży</h3>
+    <div>
+        <a href="{% url 'country_list_url' count=10 %}">Lista krajów</a>
+    </div>
+</div>
+
+<div style="display: flex; justify-content: center; width: 100%">
+    <div style="max-width: 1200px">
+        {% block page_content%}{% endblock %}
+    </div>
+</div>
+
+<div style="bottom: 0; height: 50px; width: 100%; display: flex; justify-content: center;
+        justify-items: center; color: white; position: fixed; background: black">
+    <p>Podyplomowe python</p>
+</div>
+
+</body>
+</html>

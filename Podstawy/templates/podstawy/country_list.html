@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+    <div style="font-size: 30px; font-weight: bold">Lista {{ country_list|length }} krajów</div>
+    <ul>
+        {% for country in country_list %}
+            <li style="margin-bottom: 10px">
+                <a href="{% url 'country_by_name_url' country_name=country.country %}">
+                 {{ country.country }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+

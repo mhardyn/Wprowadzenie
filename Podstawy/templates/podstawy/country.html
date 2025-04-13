@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    {{ found_country.country }}
+{% endblock %}
+
+{% block page_content %}
+    <div>Kraj: {{ found_country.country|upper }}</div> #|upper filtr zmieniający litery na duże litery
+    {% if found_country.capital is not None %}
+        <div>Stolica: {{ found_country.capital }}</div>
+    {% else %}
+        <div style="color: red">Kraj nie posiada stolicy</div>
+    {% endif %}
+    <div>Stolica: {{ found_country.capital }}</div>
+    <div>Kod: {{ found_country.cc }}</div>
+    <div>Numer kierunkowy: {{ found_country.iac }}</div>
+    <div>Stefa czasowa: {{ found_country.timezone }}</div>
+    <div>Waluta: {{ found_country.currency }}</div>
+{% endblock %}
+

@@ -5,6 +5,7 @@ from django.urls import reverse
 from .models import find_by_name, all_countries
 from django.template.loader import render_to_string
 from django.shortcuts import render
+import pycountry_convert as pc
 
 # Create your views here.
 
@@ -32,6 +33,7 @@ def count(request):
 
 def country_by_name(request, country_name):
     found_country = find_by_name(country_name)
+    found_country['continent'] = find_continent(found_country['cc'])
     if found_country is None:
         return HttpResponseNotFound(f'Nie znaleziono kraju o nazwie {country_name}')
     return render(request, 'podstawy/country.html', {
@@ -89,3 +91,16 @@ def country_list(request, count):
 
 def first_template(request):
     return render(request, 'podstawy/first_template.html')
+
+def find_continent(country_code):
+    continent_code = pc.country_alpha2_to_continent_code(country_code)
+    return pc.convert_continent_code_to_continent_name(continent_code)
+
+# Proszę wyświetlić odpowiedni obraz kontynentu dla wybranego państwa (wykorzystanie
+# tagu {%i f %}
+
+def continent_img(country_code):
+    continent_code = pc.country_alpha2_to_continent_code(country_code)
+    return pc.convert_continent_code_to_continent_name(continent_code)
+
+

@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block page_title %}
     {{ found_country.country }}
 {% endblock %}
 
 {% block page_content %}
-    <div>Kraj: {{ found_country.country|upper }}</div> #|upper filtr zmieniający litery na duże litery
+    <div>Kraj: {{ found_country.country|upper }}</div>
+    {% comment %}upper filtr zmieniający litery na duże litery
+    {% endcomment %}
     {% if found_country.capital is not None %}
         <div>Stolica: {{ found_country.capital }}</div>
     {% else %}
@@ -16,5 +20,35 @@
     <div>Numer kierunkowy: {{ found_country.iac }}</div>
     <div>Stefa czasowa: {{ found_country.timezone }}</div>
     <div>Waluta: {{ found_country.currency }}</div>
-{% endblock %}
+    <div>Kontynent: {{ found_country.continent }}</div>
+    <div>Obraz kontynentu: {{ found_country.img }}</div>
+
+    {% if found_country.continent == "Europe" %}
+        <img src="{% static '/podstawy/img/europe.jpg'%}" alt="Europe">
+
+    {% elif found_country.continent == "Asia" %}
+        <img src="{% static '/podstawy/img/asia.jpg'%}" alt="Asia">
+
+    {% elif found_country.continent == "Africa" %}
+        <img src="{% static '/podstawy/img/africa.jpg'%}" alt="Africa">
+
+    {% elif found_country.continent == "North_america" %}
+        <img src="{% static '/podstawy/img/north_america.jpg'%}" alt="North America">
+
+    {% elif found_country.continent == "South_america" %}
+        <img src="{% static '/podstawy/img/south_america.jpg'%}" alt="South America">
+
+    {% elif found_country.continent == "Antarctica" %}
+        <img src="{% static '/podstawy/img/antarctica.jpg'%}" alt="Antarctica">
+
+    {% else %}
+        <p>Brak obrazu dla tego kontynentu.</p>
+    {% endif %}
+    {% endblock %}
+
+
+
+
+
+
 
